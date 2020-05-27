@@ -13,8 +13,14 @@ namespace BancoDePalavras.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.HomeActive = "active";
             return View();
         }
 
+        public IActionResult Login()
+        {
+            ViewBag.LoginActive = "active";
+            return View();
+        }
     }
 }
