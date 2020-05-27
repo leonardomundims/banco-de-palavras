@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BancoDePalavras.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace BancoDePalavras.Controllers
 {
@@ -17,10 +19,24 @@ namespace BancoDePalavras.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
             ViewBag.LoginActive = "active";
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login([FromForm] Usuario usuario)
+        {
+            if (usuario.Email == "guest@guest.com" && usuario.Senha == "guest123")
+            {
+                return RedirectToAction("Index", "Palavras");
+            }
+            ViewBag.LoginActive = "active";
+            ViewBag.Mensage = "Usuario Invalido";
+            return View();
+
         }
     }
 }
