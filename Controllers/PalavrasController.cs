@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.TagHelpers;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using BancoDePalavras.Database;
+using System.Linq;
 
 namespace BancoDePalavras.Controllers
 {
@@ -23,8 +24,9 @@ namespace BancoDePalavras.Controllers
         }
         public IActionResult Index()
         {
+            var palavras = _db.Palavras.ToList();
             ViewBag.PalavrasActive = "active";
-            return View();
+            return View(palavras);
         }
 
         [HttpGet]
@@ -40,8 +42,11 @@ namespace BancoDePalavras.Controllers
             ViewBag.Niveis = Niveis;
             if (ModelState.IsValid)
             {
+                _db.Add(palavra);
+                _db.SaveChanges();
                 return RedirectToAction("Index", "Palavras");
             }
+
             return View();
         }
     }

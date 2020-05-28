@@ -1,22 +1,31 @@
 <!-- PALAVRAS -->
+@model List<BancoDePalavras.Models.Palavra>
 
-@{ ViewData["Title"] = "Palavras - "; }
-<a class="btn btn-outline btn-dark" asp-action="cadastrar" asp-controller="palavras">Cadastrar</a>
-<table class="table table-striped mt-1">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Palavra</th>
-            <th scope="col">Nivel</th>
-            <th scope="col">Ação</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Palavra1</td>
-            <td>1</td>
-            <td><a href="">Editar</a> | <a href="">Excluir</a></td>
-        </tr>
-    </tbody>
-</table>
+    @{ ViewData["Title"] = "Palavras - "; }
+    <a class="btn btn-outline btn-dark" asp-action="cadastrar" asp-controller="palavras">Cadastrar</a>
+    <table class="table table-striped mt-1">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Palavra</th>
+                <th scope="col">Nivel</th>
+                <th scope="col">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Exemplo</td>
+                <td>1</td>
+                <td><a href="">Editar</a> | <a href="">Excluir</a></td>
+            </tr>
+            @foreach(var palavra in Model){
+            <tr>
+                <th scope="row">@palavra.Id</th>
+                <td>@palavra.Nome</td>
+                <td>@palavra.Nivel</td>
+                <td><a href=""></a><a href=""></a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
