@@ -37,7 +37,7 @@ namespace BancoDePalavras.Controllers
         {
             ViewBag.Niveis = Niveis;
             ViewBag.PalavrasActive = "active";
-            return View();
+            return View(new Palavra());
         }
 
         [HttpPost]
@@ -53,6 +53,42 @@ namespace BancoDePalavras.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Atualizar(int Id) {
+            ViewBag.Niveis = Niveis;
+            Palavra palavra = _db.Palavras.Find(Id); //encontrar a palavra com o id informado
+            return View("Cadastrar", palavra); //pasa a palavra encontrada
+        }
+
+        [HttpPost]
+        public IActionResult Atualizar([FromForm] Palavra palavra) {
+           
+            ViewBag.Niveis = Niveis;
+
+            if(ModelState.IsValid){ 
+                //se o formulario for valido
+                _db.Palavras.Update(palavra); //altera a palavra
+                _db.SaveChanges(); //salva a alteração
+
+                TempData["Mensagem"] = "A palavra '" + palavra.Nome + " foi alterada com sucesso";
+                return RedirectToAction("Index");
+            } 
+
+            return View("Cadastrar", palavra);
+            
+        }
+
+        public IActionResult Excluir(int Id) {
+
+            var palavra = _db.Palavras.Find(Id);
+
+            _db.Palavras.Remove(palavra); //exclui a palavra no id informado
+            _db.SaveChanges(); //salva as alterações
+
+            TempData["Mensagem"] = "A palavra '" + palavra.Nome + "' foi excluida com sucesso";
+            return RedirectToAction("Index");
         }
     }
 }

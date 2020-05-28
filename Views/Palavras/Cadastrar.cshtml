@@ -1,7 +1,10 @@
 @{ ViewData["Title"] = "Palavras - "; }
 
+@model BancoDePalavras.Models.Palavra
+
 <h1 class="h-3">Cadastrar</h1>
 <form method="POST" class="form-personalizado ">
+    <input type="hidden" name="id" value="@Model.Id" />
     <div class="form-group">
         <label for="Palavra">Palavra:</label>
         <input type="text" class="form-control" name="nome" id="nome"> @Html.ValidationMessage("nome")
@@ -9,8 +12,12 @@
     <div class="form-group">
         <label for="nivel">Nivel</label>
         <select class="form-control" name="nivel" id="nivel">
-            @foreach(var nivel in ViewBag.Niveis){
+            @foreach (var nivel in ViewBag.Niveis) {
+            if (nivel.Id == Model.Nivel) {
+            <option value="@nivel.Id" selected>@nivel.Valor</option>
+                } else {
             <option value="@nivel.Id">@nivel.Valor</option>
+                }
             }
         </select> @Html.ValidationMessage("nivel")
     </div>
