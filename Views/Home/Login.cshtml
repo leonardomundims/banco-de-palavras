@@ -5,9 +5,9 @@
         <img class="mb-4" src="" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Login</h1>
         <label for="Email" class="sr-only">Email address</label>
-        <input type="email" name="email" id="Email" class="form-control mb-1" placeholder="Email">
+        <input type="email" name="email" id="Email" value="guest@guest.com" class="form-control mb-1" placeholder="Email">
         <label for="Senha" class="sr-only ">Senha</label>
-        <input type="password" name="senha" id="Senha" class="form-control mb-1" placeholder="Senha">
+        <input type="password" name="senha" id="Senha" value="guest123" class="form-control mb-1" placeholder="Senha">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button> @if(ViewBag.Mensage != null){
         <div class="alert alert-danger mt-1" role="alert">
             @ViewBag.Mensage

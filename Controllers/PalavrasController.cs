@@ -1,6 +1,9 @@
 using BancoDePalavras.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using BancoDePalavras.Database;
 
 namespace BancoDePalavras.Controllers
 {
@@ -8,8 +11,12 @@ namespace BancoDePalavras.Controllers
     {
         private List<Nivel> Niveis = new List<Nivel>();
 
-        public PalavrasController()
+      private DatabaseContext _db;
+
+        public PalavrasController(DatabaseContext db)
         {
+            _db = db;
+
             Niveis.Add(new Nivel(1, "Fácil"));
             Niveis.Add(new Nivel(2, "Médio"));
             Niveis.Add(new Nivel(3, "Difícil"));
@@ -28,13 +35,13 @@ namespace BancoDePalavras.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar([FromForm] Palavra palavras)
+        public IActionResult Cadastrar([FromForm] Palavra palavra)
         {
+            ViewBag.Niveis = Niveis;
             if (ModelState.IsValid)
             {
-                return View("Index");
+                return RedirectToAction("Index", "Palavras");
             }
-
             return View();
         }
     }

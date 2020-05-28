@@ -1,17 +1,16 @@
 @{ ViewData["Title"] = "Palavras - "; }
-
-<form>
+<form method="POST">
     <div class="form-group">
         <label for="Palavra">Palavra:</label>
-        <input type="text" class="form-control" name="nome" id="nome" aria-describedby="emailHelp">
+        <input type="text" class="form-control" name="nome" id="nome"> @Html.ValidationMessage("nome")
     </div>
     <div class="form-group">
-        <label for="exampleInputPassword1">Nivel</label>
-        <select name="nivel" id="nivel">
+        <label for="nivel">Nivel</label>
+        <select class="form-control" name="nivel" id="nivel">
             @foreach(var nivel in ViewBag.Niveis){
-            <option value="nivel.ID">@nivel.Valor</option>
+            <option value="@nivel.Id">@nivel.Valor</option>
             }
-        </select>
+        </select> @Html.ValidationMessage("nivel")
     </div>
     <button type="submit" class="btn btn-primary">Salvar</button>
 </form>

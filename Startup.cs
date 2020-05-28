@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
+using BancoDePalavras.Database;
 
 namespace BancoDePalavras
 {
@@ -24,6 +27,12 @@ namespace BancoDePalavras
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
+            //utilizar banco de dados SQLite
+            services.AddDbContext<DatabaseContext>();
+
+             services.AddMemoryCache(); //utilizar memoria de cache
+             services.AddSession(); //utilizar sessões de login 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
