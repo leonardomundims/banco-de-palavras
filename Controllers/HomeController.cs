@@ -26,11 +26,13 @@ namespace BancoDePalavras.Controllers
             return View();
         }
 
+
         [HttpPost]
         public IActionResult Login([FromForm] Usuario usuario)
         {
             if (usuario.Email == "guest@guest.com" && usuario.Senha == "guest123")
             {
+                HttpContext.Session.SetString("Login", "true");
                 return RedirectToAction("Index", "Palavras");
             }
             ViewBag.LoginActive = "active";
@@ -38,5 +40,13 @@ namespace BancoDePalavras.Controllers
             return View();
 
         }
+
+        public IActionResult Logout() 
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }

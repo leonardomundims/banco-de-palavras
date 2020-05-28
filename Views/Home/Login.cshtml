@@ -1,10 +1,15 @@
 @{ ViewData["Title"] = "Login - "; }
 
+@if(TempData["MensagemErro"] != null){
+    <div class="alert alert-danger" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
 <h1 class="h-3">Login</h1>
 <div class="text-center">
 
     <form method="POST" class="form-personalizado">
-        <img class="mb-4" src="" alt="" width="72" height="72">
+        <img class="mb-4 border border-secondary rounded p-1" src="~/images/icone-usuario.png" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Login</h1>
         <label for="Email" class="sr-only">Email address</label>
         <input type="email" name="email" id="Email" value="guest@guest.com" class="form-control mb-1" placeholder="Email">

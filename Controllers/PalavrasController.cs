@@ -5,9 +5,12 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using BancoDePalavras.Database;
 using System.Linq;
+using BancoDePalavras.Library;
+using BancoDePalavras.Library.Filters;
 
 namespace BancoDePalavras.Controllers
 {
+    [Login]
     public class PalavrasController : Controller
     {
         private List<Nivel> Niveis = new List<Nivel>();

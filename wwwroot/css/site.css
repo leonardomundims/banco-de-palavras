@@ -53,10 +53,6 @@ html {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-button.accept-policy {
-    font-size: 1rem;
-    line-height: inherit;
-}
 
 
 /* Sticky footer styles
@@ -73,8 +69,6 @@ body {
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
@@ -95,3 +89,17 @@ body {
     padding: 15px;
     margin: auto;
 }
+
+
+.img-home {
+    width: 150px;
+    height: 150px;
+}
+
+@media (min-width: 600px) {
+    .img-home {
+        width: 250px;
+        height: 250px;
+    }
+}
+

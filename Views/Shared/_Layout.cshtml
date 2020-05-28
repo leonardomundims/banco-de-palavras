@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http; <!-- importa o namespace para poder tarbalhar com Session -->
+
+@{
+   var Login = Context.Session.GetString("Login"); //pede a informação de estado do login -> true = usuario logado || null = usuario não logado
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,19 +23,28 @@
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="logo" class="logo">BancoDePalavras</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item @ViewBag.HomeActive">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item @ViewBag.PalavrasActive">
-                            <a class="nav-link" asp-area="" asp-controller="Palavras" asp-action="Index">Palavras</a>
+                        <!-- Se o usuario estiver logado-->
+                        @if (Login != null) {
+                        <li class="nav-item @ViewBag.PalavraActive">
+                            <a class="nav-link" asp-controller="Palavras" asp-action="Index">Palavras</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Logout">Logout</a>
+                        </li>
+                        }else {
+                        //Se o usuario NÂO estiver logado
+
                         <li class="nav-item @ViewBag.LoginActive">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Login">Login</a>
                         </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -41,9 +56,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted text-center">
+    <footer class="border-top text-muted text-center">
         <div class="container">
-            &copy; 2020 - BancoDePalavras - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - BancoDePalavras
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -31,8 +31,10 @@ namespace BancoDePalavras
             //utilizar banco de dados SQLite
             services.AddDbContext<DatabaseContext>();
 
-             services.AddMemoryCache(); //utilizar memoria de cache
-             services.AddSession(); //utilizar sessões de login 
+            services.AddMemoryCache(); //utilizar memoria de cache
+            services.AddSession(); //utilizar sessões de login 
+  
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +44,9 @@ namespace BancoDePalavras
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSession();
+           
             
             app.UseHttpsRedirection();
             app.UseStaticFiles();
