@@ -1,5 +1,7 @@
 @{ ViewData["Title"] = "Palavras - "; }
-<form method="POST">
+
+<h1 class="h-3">Cadastrar</h1>
+<form method="POST" class="form-personalizado ">
     <div class="form-group">
         <label for="Palavra">Palavra:</label>
         <input type="text" class="form-control" name="nome" id="nome"> @Html.ValidationMessage("nome")

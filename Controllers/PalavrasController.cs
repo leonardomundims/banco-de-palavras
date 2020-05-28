@@ -33,6 +33,7 @@ namespace BancoDePalavras.Controllers
         public IActionResult Cadastrar()
         {
             ViewBag.Niveis = Niveis;
+            ViewBag.PalavrasActive = "active";
             return View();
         }
 
@@ -40,6 +41,7 @@ namespace BancoDePalavras.Controllers
         public IActionResult Cadastrar([FromForm] Palavra palavra)
         {
             ViewBag.Niveis = Niveis;
+
             if (ModelState.IsValid)
             {
                 _db.Add(palavra);

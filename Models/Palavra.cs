@@ -1,14 +1,17 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
+using BancoDePalavras.Library.Validation;
+
 
 namespace BancoDePalavras.Models
-{
+{   
     public class Palavra
     {
 
         public int Id { get; set; }
 
         [Required(ErrorMessage = "O campo 'Palavra' é obrigatório")]
+        [PalavraUnica]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "O campo 'Nivel' é obrigatório")]
