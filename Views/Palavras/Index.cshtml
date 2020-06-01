@@ -1,18 +1,15 @@
 <!-- PALAVRAS -->
 @model List<BancoDePalavras.Models.Palavra>
 
-    @{ ViewData["Title"] = "Palavras - "; }
-
-    @if (TempData["Mensagem"] != null) {
+    @{ ViewData["Title"] = "Palavras - "; } @if (TempData["Mensagem"] != null) {
     <div class="alert alert-success" role="alert">
         @TempData["Mensagem"]
     </div>
-}
+    }
     <a class="btn btn-outline btn-dark" asp-action="cadastrar" asp-controller="palavras">Cadastrar</a>
-    <table class="table table-striped mt-1">
+    <table class="table table-striped mt-1 text-center">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Palavra</th>
                 <th scope="col">Nivel</th>
                 <th scope="col">Ação</th>
@@ -20,7 +17,6 @@
         </thead>
         <tbody>
             <tr>
-                <th scope="row">1</th>
                 <td>Exemplo</td>
                 <td>1</td>
                 <td>
@@ -29,7 +25,6 @@
             </tr>
             @foreach(var palavra in Model){
             <tr>
-                <th scope="row">@palavra.Id</th>
                 <td>@palavra.Nome</td>
                 <td>@palavra.Nivel</td>
                 <td>
@@ -37,6 +32,6 @@
                     <a href="palavras/excluir/@palavra.Id">Excluir</a>
                 </td>
             </tr>
-        }
+            }
         </tbody>
     </table>

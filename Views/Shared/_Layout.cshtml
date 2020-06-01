@@ -1,8 +1,7 @@
-﻿@using Microsoft.AspNetCore.Http; <!-- importa o namespace para poder tarbalhar com Session -->
+﻿@using Microsoft.AspNetCore.Http;
+<!-- importa o namespace para poder tarbalhar com Session -->
 
-@{
-   var Login = Context.Session.GetString("Login"); //pede a informação de estado do login -> true = usuario logado || null = usuario não logado
-}
+@{ var Login = Context.Session.GetString("Login");}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,8 +22,8 @@
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="logo" class="logo">BancoDePalavras</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item @ViewBag.HomeActive">
@@ -38,8 +37,7 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Logout">Logout</a>
                         </li>
-                        }else {
-                        //Se o usuario NÂO estiver logado
+                        }else { //Se o usuario NÂO estiver logado
 
                         <li class="nav-item @ViewBag.LoginActive">
                             <a class="nav-link" asp-controller="Home" asp-action="Login">Login</a>
@@ -56,11 +54,6 @@
         </main>
     </div>
 
-    <footer class="border-top text-muted text-center">
-        <div class="container">
-            &copy; 2020 - BancoDePalavras
-        </div>
-    </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
